@@ -21,13 +21,18 @@ static inline uint16_t RGB15(uint16_t r, uint16_t g, uint16_t b)
     return (r & 0x1F) | ((g & 0x1F) << 5) | ((b & 0x1F) << 10);
 }
 
+void testfn();
+
 int main(int argc, char *argv[])
 {
     REG_DISPCNT = DISPCNT_BG_MODE(3) | DISPCNT_BG2_ENABLE;
 
+    testfn();
+
     MEM_VRAM_MODE3_FB[120 + 80 * GBA_SCREEN_W] = RGB15(31, 0, 0);
     MEM_VRAM_MODE3_FB[136 + 80 * GBA_SCREEN_W] = RGB15(0, 31, 0);
     MEM_VRAM_MODE3_FB[120 + 96 * GBA_SCREEN_W] = RGB15(0, 0, 31);
+
 
     while(1);
 
